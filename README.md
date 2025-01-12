@@ -28,7 +28,7 @@ still in progress...
 - _unlock.py_ 解锁指定歌曲
 - _userdata.py_ ```GetUserDataApi```
 
-其中，_mapstock.py_ _music.py_ _ticket.py_ _unlock.py_ _userdata.py_ 均包含完整登录流程，其中 _mapstock.py_ _music.py_ _unlock.py_ 会按照 _settings.py_ 中记录的歌曲信息覆盖原有成绩。
+其中，_mapstock.py_ _music.py_ _ticket.py_ _unlock.py_ _userdata.py_ 均包含完整登录流程，其中 _music.py_ 会按照 _settings.py_ 中记录的歌曲信息覆盖原有成绩，_mapstock.py_ _unlock.py_ 会上传一条「PANDORA PANDOXXX」Re:Master 铺面的游玩记录，但是不会覆盖原有成绩。
 
 - _settings.py_ 储存 UserId、机厅信息等重要的信息，**请不要向他人泄露自己的 UserId**。将 ```.settings.py``` 命名为 ```settings.py``` 并按照注释修改设置。
 

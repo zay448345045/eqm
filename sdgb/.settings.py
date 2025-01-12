@@ -10,14 +10,14 @@ userId = 10000000
 # 此成绩将覆盖原有成绩
 
 music_data = ({
-    "musicId": 11588,
-    "level": 3,
+    "musicId": 834,
+    "level": 4,
     "playCount": 11,
-    "achievement": 1005627,
+    "achievement": 91000,
     "comboStatus": 0,
     "syncStatus": 0,
-    "deluxscoreMax": 2362,
-    "scoreRank": 13,
+    "deluxscoreMax": 2102,
+    "scoreRank": 5,
     "extNum1": 0
 })
 

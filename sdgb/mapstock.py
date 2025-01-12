@@ -375,7 +375,7 @@ def music():
         "isNewMapList": "",
         "isNewLoginBonusList": "",
         "isNewItemList": "",
-        "isNewMusicDetailList": "0",
+        "isNewMusicDetailList": "1",
         "isNewCourseList": "0",
         "isNewFavoriteList": "",
         "isNewFriendSeasonRankingList": ""
