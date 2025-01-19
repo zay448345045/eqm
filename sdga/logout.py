@@ -1,0 +1,28 @@
+import json
+import pytz
+
+from sdgb import sdgb_api
+from datetime import datetime
+
+from settings import userId, accessCode
+from settings import regionId
+from settings import clientId
+from settings import placeId
+
+def logout(timestamp):
+    data = json.dumps({
+        "userId": int(userId),
+        "accessCode": int(accessCode),
+        "regionId": regionId,
+        "placeId": placeId,
+        "clientId": clientId,
+        "dateTime": timestamp,
+        "type": 1
+    })
+
+    logout_result = json.loads(sdgb_api(data, "UserLogoutApi", userId))
+    return logout_result
+    
+
+if __name__ == "__main__":
+    print(logout(int(input())))
