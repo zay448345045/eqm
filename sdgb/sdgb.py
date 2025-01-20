@@ -58,24 +58,25 @@ def sdgb_api(data, useApi, userId):
     data_def = zlib.compress(data_enc)
     requests.packages.urllib3.disable_warnings()
     endpoint = "https://maimai-gm.wahlap.com:42081/Maimai2Servlet/"
-    r = requests.post(endpoint + get_hash_api(useApi), headers={
-        "User-Agent": "%s#%d"%(get_hash_api(useApi), userId), 
-        "Content-Type": "application/json",
-        "Mai-Encoding": "1.40",
-        "Accept-Encoding": "",
-        "Charset": "UTF-8", 
-        "Content-Encoding": "deflate", 
-        "Expect": "100-continue"
-    }, data = data_def,verify=False)
+    r = requests.post(
+        endpoint + get_hash_api(useApi),
+        headers = {
+            "User-Agent": "%s#%d"%(get_hash_api(useApi), userId), 
+            "Content-Type": "application/json",
+            "Mai-Encoding": "1.40",
+            "Accept-Encoding": "",
+            "Charset": "UTF-8", 
+            "Content-Encoding": "deflate", 
+            "Expect": "100-continue"
+        },
+        data = data_def
+    )
     resp_def = r.content
 
     try:
         resp_enc = zlib.decompress(resp_def)
-        #print(resp_enc)
     except:
         resp_enc = resp_def
-        #print("skipped")
-        #print(resp_enc)
     return unpad(aes.decrypt(resp_enc), 16).decode()
 
 def qr_api(qr_code):

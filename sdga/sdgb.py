@@ -59,15 +59,19 @@ def sdgb_api(data, useApi, userId):
     data_enc = aes.encrypt(data_def)
     endpoint = "https://mai2exp.sic-rd1.jp:42081/Maimai2Servlet/"
     requests.packages.urllib3.disable_warnings()
-    r = requests.post(endpoint + get_hash_api(useApi), headers={
-        "User-Agent": "%s#%d"%(get_hash_api(useApi), userId), 
-        "Content-Type": "application/json",
-        "Mai-Encoding": "1.51",
-        "Accept-Encoding": "",
-        "Charset": "UTF-8", 
-        "Content-Encoding": "deflate", 
-        "Expect": "100-continue"
-    }, data = data_enc,verify=False)
+    r = requests.post(
+        endpoint + get_hash_api(useApi),
+        headers = {
+            "User-Agent": "%s#%d"%(get_hash_api(useApi), userId), 
+            "Content-Type": "application/json",
+            "Mai-Encoding": "1.51",
+            "Accept-Encoding": "",
+            "Charset": "UTF-8", 
+            "Content-Encoding": "deflate", 
+            "Expect": "100-continue"
+        },
+        data = data_enc
+    )
     resp_enc = r.content
     try:
         resp_def = aes.decrypt(resp_enc)
