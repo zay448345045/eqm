@@ -1,7 +1,6 @@
 import json
 import zlib
 import pytz
-import base64
 import hashlib
 import requests
 
