@@ -2,13 +2,10 @@ import json
 import pytz
 
 from sdgb import sdgb_api
-from sdgb import aimedb_api
 from datetime import datetime
 
 from settings import userId, accessCode
-from settings import regionId
-from settings import clientId
-from settings import placeId
+from settings import regionId, clientId, placeId
 
 def login(timestamp):
     data = json.dumps({
@@ -22,9 +19,8 @@ def login(timestamp):
         "genericFlag": 0,
     })
 
-    login_result = json.loads(sdgb_api(data, "UserLoginApi", userId))
+    login_result = sdgb_api(data, "UserLoginApi", userId)
     return login_result
 
 if __name__ == "__main__":
-    print(aimedb_api(accessCode))
     print(login(int(input())))

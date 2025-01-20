@@ -5,9 +5,7 @@ from sdgb import sdgb_api
 from datetime import datetime
 
 from settings import userId
-from settings import regionId
-from settings import clientId
-from settings import placeId
+from settings import regionId, clientId, placeId
 
 def logout(timestamp):
     data = json.dumps({
@@ -20,7 +18,7 @@ def logout(timestamp):
         "type": 1
     })
 
-    logout_result = json.loads(sdgb_api(data, "UserLogoutApi", userId))
+    logout_result = sdgb_api(data, "UserLogoutApi", userId)
     return logout_result
     
 

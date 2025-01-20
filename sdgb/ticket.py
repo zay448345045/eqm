@@ -6,9 +6,7 @@ from sdgb import sdgb_api
 from datetime import datetime, timedelta
 
 from settings import userId
-from settings import regionId
-from settings import clientId
-from settings import placeId
+from settings import regionId, clientId, placeId
 
 from logout import logout
 from login import login
@@ -32,7 +30,7 @@ def get_ticket():
         }
     })
 
-    ticket_result = json.loads(sdgb_api(data, "UpsertUserChargelogApi", userId))
+    ticket_result = sdgb_api(data, "UpsertUserChargelogApi", userId)
 
     return ticket_result
 

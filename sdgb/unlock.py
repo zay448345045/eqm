@@ -8,11 +8,7 @@ from datetime import datetime, timedelta
 
 from settings import userId
 from settings import music_data
-from settings import regionId
-from settings import regionName
-from settings import clientId
-from settings import placeId
-from settings import placeName
+from settings import regionId, clientId, placeId, regionName, placeName
 
 from login import login
 from logout import logout
@@ -50,7 +46,7 @@ def music(unlock_id):
 
     # UserLogin
 
-    login_result = login(timestamp)
+    login_result = json.loads(login(timestamp))
     print(login_result)
 
     login_id = login_result['loginId']
@@ -388,7 +384,7 @@ def music(unlock_id):
         "isNewMapList": "",
         "isNewLoginBonusList": "",
         "isNewItemList": 11,
-        "isNewMusicDetailList": "0",
+        "isNewMusicDetailList": "1",
         "isNewCourseList": "0",
         "isNewFavoriteList": "",
         "isNewFriendSeasonRankingList": ""
