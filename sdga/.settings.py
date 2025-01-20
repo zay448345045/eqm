@@ -1,11 +1,14 @@
 # This file contains the config of the whole project.
 # DO NOT share your crtical info to others.
 # Change the file name from .settings.py to settings.py.
+from sdgb import aimedb_api, felica
 
-
-# UserId 自行获取
-userId = 10000000
 accessCode = 50000000000000000000
+IDm = "0000000000000000"
+
+felica(IDm)
+
+userId = aimedb_api(accessCode)
 
 # 上传的乐曲成绩
 # 此成绩将覆盖原有成绩
