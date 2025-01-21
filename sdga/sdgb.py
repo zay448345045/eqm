@@ -15,7 +15,6 @@ from Crypto.Util.Padding import pad, unpad
 AesKey = "A;mv5YUpHBK3YxTy5KB^[;5]C2AL50Bq"
 AesIV = "9FM:sd9xA91X14v]"
 ObfuscateParam = "M9aBNKuY"
-KeychipID = "A63E-01E00488964"
 
 class aes_pkcs7(object):
     def __init__(self, key: str, iv: str):
@@ -87,8 +86,8 @@ def felica(IDm):
     command_id = "0100" # ID = 1
     length = "3000" # 48
     gameId = "534447410000" # SDGA
-    storeId = "0c190000"
-    keychip_ID = "413633453031453030343800" # A63E01E0048
+    storeId = "bc310000"
+    keychip_ID = "413633453031453032363400" # A63E01E0264
     header = magic + version + command_id + length + "0000" + gameId + storeId + keychip_ID
 
     IDm = str(IDm)
@@ -121,11 +120,11 @@ def aimedb_api(accessCode):
     # https://sega.bsnk.me/allnet/aimedb/common/
     magic = "3ea1"
     version = "2140"
-    command_id = "0f00" # ID = 1
+    command_id = "0f00" # ID = 15
     length = "3000" # 48
     gameId = "534447410000" # SDGA
-    storeId = "0c190000"
-    keychip_ID = "413633453031453030343800" # A63E01E0048
+    storeId = "bc310000"
+    keychip_ID = "413633453031453032363400" # A63E01E0264
     header = magic + version + command_id + length + "0000" + gameId + storeId + keychip_ID
 
     access_code = str(accessCode)
