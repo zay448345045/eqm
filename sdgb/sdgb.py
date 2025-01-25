@@ -29,7 +29,6 @@ class aes_pkcs7(object):
 
     def decrypt(self, content):
         cipher = AES.new(self.key, AES.MODE_CBC, self.iv)
-        #content = base64.b64decode(content)
         return cipher.decrypt(content)
         text = cipher.decrypt(content).decode('utf-8')
         return self.pkcs7unpadding(text)
@@ -96,7 +95,10 @@ def qr_api(qr_code):
         "Host": "ai.sys-all.cn",
         "User-Agent": "WC_AIME_LIB"
     }
-    res = requests.post("http://ai.sys-allnet.cn/wc_aime/api/get_data", data=json.dumps(param, separators=(',', ':')), headers=headers)
-    # print(param) # debug打印param数据
+    res = httpx.post(
+        "http://ai.sys-allnet.cn/wc_aime/api/get_data",
+        data = json.dumps(param, separators=(',', ':')),
+        headers = headers
+    )
     assert res.status_code == 200, "网络错误"
     return json.loads(res.content)
