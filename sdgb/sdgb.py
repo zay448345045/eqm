@@ -3,7 +3,7 @@ import zlib
 import pytz
 import base64
 import hashlib
-import requests
+import httpx
 
 from datetime import datetime
 from Crypto.Cipher import AES
@@ -56,9 +56,8 @@ def sdgb_api(data, useApi, userId):
     data = data
     data_enc = aes.encrypt(data)
     data_def = zlib.compress(data_enc)
-    requests.packages.urllib3.disable_warnings()
     endpoint = "https://maimai-gm.wahlap.com:42081/Maimai2Servlet/"
-    r = requests.post(
+    r = httpx.post(
         endpoint + get_hash_api(useApi),
         headers = {
             "User-Agent": "%s#%d"%(get_hash_api(useApi), userId), 

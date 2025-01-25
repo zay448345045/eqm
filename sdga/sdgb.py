@@ -2,7 +2,7 @@ import json
 import zlib
 import pytz
 import hashlib
-import requests
+import httpx
 
 from binascii import unhexlify, hexlify
 import socket
@@ -57,16 +57,15 @@ def sdgb_api(data, useApi, userId):
     data_def = zlib.compress(data)
     data_enc = aes.encrypt(data_def)
     endpoint = "https://mai2exp.sic-rd1.jp:42081/Maimai2Servlet/"
-    requests.packages.urllib3.disable_warnings()
-    r = requests.post(
+    r = httpx.post(
         endpoint + get_hash_api(useApi),
         headers = {
-            "User-Agent": "%s#%d"%(get_hash_api(useApi), userId), 
+            "User-Agent": "%s#%d"%(get_hash_api(useApi), userId),
             "Content-Type": "application/json",
             "Mai-Encoding": "1.51",
             "Accept-Encoding": "",
-            "Charset": "UTF-8", 
-            "Content-Encoding": "deflate", 
+            "Charset": "UTF-8",
+            "Content-Encoding": "deflate",
             "Expect": "100-continue"
         },
         data = data_enc
@@ -86,8 +85,8 @@ def felica(IDm):
     command_id = "0100" # ID = 1
     length = "3000" # 48
     gameId = "534447410000" # SDGA
-    storeId = "bc310000"
-    keychip_ID = "413633453031453032363400" # A63E01E0264
+    storeId = "aa1e0000"
+    keychip_ID = "413633453031453031383200" # A63E01E0264
     header = magic + version + command_id + length + "0000" + gameId + storeId + keychip_ID
 
     IDm = str(IDm)
@@ -113,7 +112,7 @@ def felica(IDm):
 
         decrypted_hex_stream = hexlify(decrypted_response).decode('utf-8')
 
-    return decrypted_hex_stream
+    return decrypted_hex_stream[-24:-4]
 
 def aimedb_api(accessCode):
     key = b'Copyright(C)SEGA'
@@ -123,8 +122,8 @@ def aimedb_api(accessCode):
     command_id = "0f00" # ID = 15
     length = "3000" # 48
     gameId = "534447410000" # SDGA
-    storeId = "bc310000"
-    keychip_ID = "413633453031453032363400" # A63E01E0264
+    storeId = "aa1e0000"
+    keychip_ID = "413633453031453031383200" # A63E01E0264
     header = magic + version + command_id + length + "0000" + gameId + storeId + keychip_ID
 
     access_code = str(accessCode)
