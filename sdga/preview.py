@@ -1,7 +1,7 @@
 import json
 
 from sdgb import sdgb_api
-from settings import userId, accessCode
+from settings import userId
 
 def preview(userId):
     data = json.dumps({
