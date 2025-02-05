@@ -2,7 +2,7 @@ import dataclasses
 from Crypto.Cipher import AES
 from Crypto.Util.Padding import pad
 import base64
-import urllib3
+import httpx
 
 def enc(key, iv, data):
     cipher = AES.new(key, AES.MODE_CBC, iv)
@@ -25,17 +25,15 @@ def hello():
     header = bytes.fromhex('00000000000000000000000000000000')
     bytes_data = pad(header + content, 16) 
     encrypted = enc(key, iv, bytes_data)
-    http = urllib3.PoolManager()
-    r = http.request(
-        'POST',
+    r = httpx.post(
         'http://at.sys-allnet.cn/net/delivery/instruction',
-        body=encrypted,
-        headers={
+        data = encrypted,
+        headers = {
             'User-Agent': ua,
             'Pragma': 'DFI'
         }
     )
-    resp_data = r.data
+    resp_data = r.content
     decrypted = dec(key, resp_data[:16], resp_data)
     decrypted_bytes = decrypted[16:]
     decrypted_str = decrypted_bytes.decode('UTF-8')
