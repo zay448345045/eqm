@@ -61,17 +61,6 @@ def music():
 
     userdata = json.loads(sdgb_api(data, "GetUserDataApi", userId))
 
-    # UserMusic 随机两首
-
-    data = json.dumps({
-        "userId": int(userId),
-        "nextIndex":random.randint(11000,11500),
-        "maxCount":2
-    })
-
-    music_details = json.loads(sdgb_api(data, "GetUserMusicApi", userId))
-
-
     # UserLog
 
     data = json.dumps({
@@ -192,243 +181,6 @@ def music():
 
     print(userlog_result)
 
-    data = json.dumps({
-    "userId": int(userId),
-    "userPlaylog": {
-        "userId": 0,
-        "orderId": 0,
-        "playlogId": login_id,
-        "version": 1041000,
-        "placeId": placeId,
-        "placeName": placeName,
-        "loginDate": int(time.time()),
-        "playDate": datetime.now(pytz.timezone('Asia/Shanghai')).strftime('%Y-%m-%d'),
-        "userPlayDate": datetime.now(pytz.timezone('Asia/Shanghai')).strftime('%Y-%m-%d %H:%M:%S') + '.0',
-        "type": 0,
-        "musicId": music_details['userMusicList'][0]['userMusicDetailList'][0]['musicId'],
-        "level": music_details['userMusicList'][0]['userMusicDetailList'][0]['level'],
-        "trackNo": 2,
-        "vsMode": 0,
-        "vsUserName": "",
-        "vsStatus": 0,
-        "vsUserRating": 0,
-        "vsUserAchievement": 0,
-        "vsUserGradeRank": 0,
-        "vsRank": 0,
-        "playerNum": 1,
-        "playedUserId1": 0,
-        "playedUserName1": "",
-        "playedMusicLevel1": 0,
-        "playedUserId2": 0,
-        "playedUserName2": "",
-        "playedMusicLevel2": 0,
-        "playedUserId3": 0,
-        "playedUserName3": "",
-        "playedMusicLevel3": 0,
-        "characterId1": userdata['userData']['charaSlot'][0],
-        "characterLevel1": random.randint(1000,6500),
-        "characterAwakening1": 5,
-        "characterId2": userdata['userData']['charaSlot'][1],
-        "characterLevel2": random.randint(1000,6500),
-        "characterAwakening2": 5,
-        "characterId3": userdata['userData']['charaSlot'][2],
-        "characterLevel3": random.randint(1000,6500),
-        "characterAwakening3": 5,
-        "characterId4": userdata['userData']['charaSlot'][3],
-        "characterLevel4": random.randint(1000,6500),
-        "characterAwakening4": 5,
-        "characterId5": userdata['userData']['charaSlot'][4],
-        "characterLevel5": random.randint(1000,6500),
-        "characterAwakening5": 5,
-        "achievement": music_details['userMusicList'][0]['userMusicDetailList'][0]['achievement'],
-        "deluxscore": music_details['userMusicList'][0]['userMusicDetailList'][0]['deluxscoreMax'],
-        "scoreRank": music_details['userMusicList'][0]['userMusicDetailList'][0]['scoreRank'],
-        "maxCombo": random.randint(400,500),
-        "totalCombo": random.randint(700,900),
-        "maxSync": 0,
-        "totalSync": 0,
-        "tapCriticalPerfect": random.randint(200,400),
-        "tapPerfect": random.randint(100,250),
-        "tapGreat": random.randint(0,10),
-        "tapGood": random.randint(0,10),
-        "tapMiss": random.randint(0,10),
-        "holdCriticalPerfect": random.randint(20,40),
-        "holdPerfect": random.randint(0,15),
-        "holdGreat": 0,
-        "holdGood": 0,
-        "holdMiss": 0,
-        "slideCriticalPerfect": random.randint(34,60),
-        "slidePerfect": 0,
-        "slideGreat": 0,
-        "slideGood": 0,
-        "slideMiss": 0,
-        "touchCriticalPerfect": random.randint(20,70),
-        "touchPerfect": 0,
-        "touchGreat": 0,
-        "touchGood": 0,
-        "touchMiss": 0,
-        "breakCriticalPerfect": random.randint(8,30),
-        "breakPerfect": random.randint(7,10),
-        "breakGreat": 0,
-        "breakGood": 0,
-        "breakMiss": 0,
-        "isTap": True,
-        "isHold": True,
-        "isSlide": True,
-        "isTouch": True,
-        "isBreak": True,
-        "isCriticalDisp": True,
-        "isFastLateDisp": True,
-        "fastCount": random.randint(20,30),
-        "lateCount": random.randint(50,70),
-        "isAchieveNewRecord": False,
-        "isDeluxscoreNewRecord": False,
-        "comboStatus": 0,
-        "syncStatus": 0,
-        "isClear": True,
-        'beforeRating': userdata['userData']['playerRating'],
-        'afterRating': userdata['userData']['playerRating'],
-        "beforeGrade": 0,
-        "afterGrade": 0,
-        "afterGradeRank": 2,
-        'beforeDeluxRating': userdata['userData']['playerRating'],
-        'afterDeluxRating': userdata['userData']['playerRating'],
-        "isPlayTutorial": False,
-        "isEventMode": False,
-        "isFreedomMode": False,
-        "playMode": 0,
-        "isNewFree": False,
-        "trialPlayAchievement": -1,
-        "extNum1": 0,
-        "extNum2": 0,
-        "extNum4": 3020,
-        "extBool1": False
-        }
-    })
-
-    userlog_result = json.loads(sdgb_api(data, "UploadUserPlaylogApi", userId))
-
-    print(userlog_result)
-
-    data = json.dumps({
-    "userId": int(userId),
-    "userPlaylog": {
-        "userId": 0,
-        "orderId": 0,
-        "playlogId": login_id,
-        "version": 1041000,
-        "placeId": placeId,
-        "placeName": placeName,
-        "loginDate": int(time.time()),
-        "playDate": datetime.now(pytz.timezone('Asia/Shanghai')).strftime('%Y-%m-%d'),
-        "userPlayDate": datetime.now(pytz.timezone('Asia/Shanghai')).strftime('%Y-%m-%d %H:%M:%S') + '.0',
-        "type": 0,
-        "musicId": music_details['userMusicList'][1]['userMusicDetailList'][0]['musicId'],
-        "level": music_details['userMusicList'][1]['userMusicDetailList'][0]['level'],
-        "trackNo": 3,
-        "vsMode": 0,
-        "vsUserName": "",
-        "vsStatus": 0,
-        "vsUserRating": 0,
-        "vsUserAchievement": 0,
-        "vsUserGradeRank": 0,
-        "vsRank": 0,
-        "playerNum": 1,
-        "playedUserId1": 0,
-        "playedUserName1": "",
-        "playedMusicLevel1": 0,
-        "playedUserId2": 0,
-        "playedUserName2": "",
-        "playedMusicLevel2": 0,
-        "playedUserId3": 0,
-        "playedUserName3": "",
-        "playedMusicLevel3": 0,
-        "characterId1": userdata['userData']['charaSlot'][0],
-        "characterLevel1": random.randint(1000,6500),
-        "characterAwakening1": 5,
-        "characterId2": userdata['userData']['charaSlot'][1],
-        "characterLevel2": random.randint(1000,6500),
-        "characterAwakening2": 5,
-        "characterId3": userdata['userData']['charaSlot'][2],
-        "characterLevel3": random.randint(1000,6500),
-        "characterAwakening3": 5,
-        "characterId4": userdata['userData']['charaSlot'][3],
-        "characterLevel4": random.randint(1000,6500),
-        "characterAwakening4": 5,
-        "characterId5": userdata['userData']['charaSlot'][4],
-        "characterLevel5": random.randint(1000,6500),
-        "characterAwakening5": 5,
-        "achievement": music_details['userMusicList'][1]['userMusicDetailList'][0]['achievement'],
-        "deluxscore": music_details['userMusicList'][1]['userMusicDetailList'][0]['deluxscoreMax'],
-        "scoreRank": music_details['userMusicList'][1]['userMusicDetailList'][0]['scoreRank'],
-        "maxCombo": random.randint(400,500),
-        "totalCombo": random.randint(700,900),
-        "maxSync": 0,
-        "totalSync": 0,
-        "tapCriticalPerfect": random.randint(200,400),
-        "tapPerfect": random.randint(100,250),
-        "tapGreat": random.randint(0,10),
-        "tapGood": random.randint(0,10),
-        "tapMiss": random.randint(0,10),
-        "holdCriticalPerfect": random.randint(20,40),
-        "holdPerfect": random.randint(0,15),
-        "holdGreat": 0,
-        "holdGood": 0,
-        "holdMiss": 0,
-        "slideCriticalPerfect": random.randint(34,60),
-        "slidePerfect": 0,
-        "slideGreat": 0,
-        "slideGood": 0,
-        "slideMiss": 0,
-        "touchCriticalPerfect": random.randint(20,70),
-        "touchPerfect": 0,
-        "touchGreat": 0,
-        "touchGood": 0,
-        "touchMiss": 0,
-        "breakCriticalPerfect": random.randint(8,30),
-        "breakPerfect": random.randint(7,10),
-        "breakGreat": 0,
-        "breakGood": 0,
-        "breakMiss": 0,
-        "isTap": True,
-        "isHold": True,
-        "isSlide": True,
-        "isTouch": True,
-        "isBreak": True,
-        "isCriticalDisp": True,
-        "isFastLateDisp": True,
-        "fastCount": random.randint(20,30),
-        "lateCount": random.randint(50,70),
-        "isAchieveNewRecord": False,
-        "isDeluxscoreNewRecord": False,
-        "comboStatus": 0,
-        "syncStatus": 0,
-        "isClear": True,
-        'beforeRating': userdata['userData']['playerRating'],
-        'afterRating': userdata['userData']['playerRating'],
-        "beforeGrade": 0,
-        "afterGrade": 0,
-        "afterGradeRank": 2,
-        'beforeDeluxRating': userdata['userData']['playerRating'],
-        'afterDeluxRating': userdata['userData']['playerRating'],
-        "isPlayTutorial": False,
-        "isEventMode": False,
-        "isFreedomMode": False,
-        "playMode": 0,
-        "isNewFree": False,
-        "trialPlayAchievement": -1,
-        "extNum1": 0,
-        "extNum2": 0,
-        "extNum4": 3020,
-        "extBool1": False
-        }
-    })
-
-    userlog_result = json.loads(sdgb_api(data, "UploadUserPlaylogApi", userId))
-
-    print(userlog_result)
-
-
     # 获取 User Extend
     data = json.dumps({
         "userId": int(userId)
@@ -467,8 +219,23 @@ def music():
 
     user_charge = json.loads(sdgb_api(data, "GetUserChargeApi", userId))
 
+    data = json.dumps({
+        "userId": int(userId),
+        "nextIndex": musicId,
+        "maxCount": 1
+    })
+    user_music =  json.loads(sdgb_api(data, "GetUserMusicApi", userId))
 
-
+    isNew = "1"
+    try:
+        for item in user_music['userMusicList'][0]['userMusicDetailList']:
+            if item['musicId'] == musicId and item['level'] == level:
+                isNew = "0"
+                break
+            else:
+                continue
+    except:
+        pass
 
     # UserAll
 
@@ -640,7 +407,7 @@ def music():
         "isNewMapList": "",
         "isNewLoginBonusList": "",
         "isNewItemList": "",
-        "isNewMusicDetailList": "100",
+        "isNewMusicDetailList": isNew,
         "isNewCourseList": "0",
         "isNewFavoriteList": "",
         "isNewFriendSeasonRankingList": ""
